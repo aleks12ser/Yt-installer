@@ -1,3 +1,6 @@
 .venv/
 .idea/
 root_path.txt
+main.spec
+build
+dist
