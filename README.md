@@ -2,32 +2,42 @@
 
 A lightweight desktop application for downloading YouTube videos in maximum quality without using any browser cookies or logging into Google accounts.
 
-## Features
-- **No Cookies Required**: Completely bypasses YouTube's restrictions without sharing your browser data.
-- **Maximum Quality**: Downloads full audio and separate high-definition video streams (1080p, 2K, 4K) and merges them seamlessly.
-- **Modern JavaScript Bypass**: Locally utilizes an isolated Node.js binary to solve YouTube's internal player challenges and throttle-protection on the fly.
-- **Customizable Storage**: Choose a custom root folder where your library and internal configuration structures will be generated automatically.
-- **Wide Format Support**: Correctly lists and handles modern `.mp4`, `.mkv`, and `.webm` media formats.
+## 🛠 Installation & Setup Guide
 
-## Project Structure
-For the downloader to work correctly at max speed, keep the following portable executable structure inside your main directory:
+Follow these simple steps to get the downloader working on your machine:
+
+### 1. Install Python Dependencies
+Open your terminal/command prompt and run the following command to install the required GUI and scraping libraries:
+```bash
+pip install -r requirements.txt
+```
+
+### 2. Download Required Binaries
+For the app to bypass YouTube's protections and merge high-quality formats, you need three external files placed strictly in the root directory alongside your `main.py`:
+
+- **Node.js**: Download the portable binary [Node.exe (v22+ LTS)](https://nodejs.org). Rename it to exactly `node.exe`.
+- **FFmpeg & FFprobe**: Download the ready-to-use archive from [gyan.dev](https://gyan.dev). Open the archive, go into the `bin/` folder, and extract only two files: `ffmpeg.exe` and `ffprobe.exe`.
+
+### 3. Check Directory Structure
+Before launching, make sure your project folder looks exactly like this (without any extra unzipped folders):
 ```text
 your_project_directory/
-├── downloader.py      # The main Python script
-├── node.exe           # Node.js binary (v22+) for decryption challenges
-├── ffmpeg.exe         # FFmpeg binary for audio/video muxing
-└── ffprobe.exe        # FFprobe binary for stream analysis
+├── main.py            # The main Python script (or downloader.py)
+├── node.exe           # Extracted Node.js binary
+├── ffmpeg.exe         # Extracted FFmpeg binary
+├── ffprobe.exe        # Extracted FFprobe binary
+├── requirements.txt   # File with dependency names
+└── README.md          # This documentation file
 ```
 
-## Prerequisites
-Install the required packages before launching the application:
-```bash
-pip install PySide6 yt-dlp
-```
+## 🚀 How to Run & Use
 
-## Usage
-1. Place `node.exe`, `ffmpeg.exe`, and `ffprobe.exe` alongside the `downloader.py` file.
-2. Run the application: `python downloader.py`
-3. Click **Select Root Folder** to set your library destination.
-4. Paste any valid YouTube link and click **Download**.
-EOF
+1. Open your terminal in the project directory and launch the script:
+   ```bash
+   python main.py
+   ```
+2. Click the **"Select Root Folder"** button in the GUI window to choose where you want your downloaded videos to be saved.
+3. Paste any valid YouTube video or playlist link into the text input field.
+4. Click **"Download"** and wait for the progress bar to finish.
+
+*Note: FullHD, 2K, and 4K video clips will be downloaded as individual video and audio streams, and then automatically merged into a single crisp `.mp4` or `.webm` file by FFmpeg in the background.*
