@@ -69,17 +69,17 @@ def get_ydl_opts(progress_hook):
     node_exe_path = os.path.join(BASE_DIR, 'node.exe')
 
     return {
-        # Download video + audio in max quality (FullHD / 4K)
         "format": "bestvideo+bestaudio/best",
-        # Save files to the selected library folder
         "outtmpl": os.path.join(DOWNLOAD_FOLDER, "%(title)s.%(ext)s"),
-
-        # Completely disable browser cookies
         "no_cookies": True,
-
-        # Explicitly pass absolute paths to ffmpeg and node.exe
         "ffmpeg_location": BASE_DIR,
-        "js_runtimes": ['node', f'node:{node_exe_path}'],
+
+        # ИСПРАВЛЕННЫЙ ВАРИАНТ (Словарь конфигурации):
+        "js_runtimes": {
+            "node": {
+                "path": node_exe_path
+            }
+        },
 
         "quiet": True,
         "no_warnings": True,
